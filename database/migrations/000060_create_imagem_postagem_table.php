@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categorias', function (Blueprint $table) {
+        Schema::create('imagem_postagem', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('postagem_id')->constrained('postagens');
+            $table->foreignId('imagem_id')->constrained('imagens');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categorias');
+        Schema::dropIfExists('imagem_postagem');
     }
 };
